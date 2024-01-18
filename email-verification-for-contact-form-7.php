@@ -3,7 +3,7 @@
 Plugin Name: Email Verification for Contact Form 7
 Description: Fill out the contact form 7 and submit it with an email address that is verified.
 Author: Geek Code Lab
-Version: 2.2
+Version: 2.3
 Author URI: https://geekcodelab.com/
 Text Domain : email-verification-for-contact-form-7
 */
@@ -17,28 +17,33 @@ if (!defined("EVCF7_PLUGIN_URL"))
     
     define("EVCF7_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
     
-define("EVCF7_BUILD", '2.2');
+define("EVCF7_BUILD", '2.3');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
-// Require woocommerce admin message
-function email_verification_cf7_requirement_notice() {
+/**
+ * Admin notice
+ */
+add_action( 'admin_init', 'evcf7_plugin_load' );
 
-    if ( ! ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) ) {
-        $text    = esc_html__( 'Contact Form 7', 'email-verification-for-contact-form-7' );
-        $link    = esc_url( add_query_arg( array(
-            'tab'       => 'plugin-information',
-            'plugin'    => 'contact-form-7',
-            'TB_iframe' => 'true',
-            'width'     => '640',
-            'height'    => '500',
-        ), admin_url( 'plugin-install.php' ) ) );
-        $message = wp_kses( __( "<strong>Email Verification for Contact Form 7</strong> is an add-on of ", 'email-verification-for-contact-form-7' ), array( 'strong' => array() ) );
-
-        printf( '<div class="%1$s"><p>%2$s <a class="thickbox open-plugin-details-modal" href="%3$s"><strong>%4$s</strong></a></p></div>', 'notice notice-error', $message, $link, $text );
-    }
+function evcf7_plugin_load(){
+	if ( ! ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) ) {
+		add_action( 'admin_notices', 'evcf7_install_contact_form_7_admin_notice' );
+		deactivate_plugins("email-verification-for-contact-form-7/email-verification-for-contact-form-7.php");
+		return;
+	}
 }
 
-add_action( 'admin_notices', 'email_verification_cf7_requirement_notice' );
+function evcf7_install_contact_form_7_admin_notice(){ ?>
+	<div class="error">
+		<p>
+			<?php
+			// translators: %s is the plugin name.
+			echo esc_html( sprintf( __( '%s is enabled but not effective. It requires Contact Form 7 in order to work.', 'email-verification-for-contact-form-7' ), 'Email Verification for Contact Form 7' ) );
+			?>
+		</p>
+	</div>
+	<?php
+}
 
 register_activation_hook( __FILE__, 'evcf7_plugin_activate' );
 function evcf7_plugin_activate() {
@@ -82,6 +87,23 @@ function evcf7_plugin_activate() {
     }
 }
 
+$plugin = plugin_basename(__FILE__);
+add_filter( "plugin_action_links_$plugin", 'evcf7_add_plugin_link');
+function evcf7_add_plugin_link( $links ) {
+    if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+        $support_link = '<a href="https://geekcodelab.com/contact/" target="_blank" >' . __( 'Support', 'email-verification-for-contact-form-7' ) . '</a>';
+        array_unshift( $links, $support_link );
+
+        $pro_link = '<a href="'.esc_url(EVCF7_PRO_PLUGIN_URL).'"  target="_blank" style="color:#46b450;font-weight: 600;">' . __( 'Premium Upgrade' ) . '</a>'; 
+        array_unshift( $links, $pro_link );	
+        
+        $setting_link = '<a href="'. admin_url('admin.php?page=evcf7-email-verify') .'">' . __( 'Settings', 'email-verification-for-contact-form-7' ) . '</a>';
+        array_unshift( $links, $setting_link );
+    }
+
+	return $links;
+}
+
 /**
  * Admin init hook
  */
@@ -116,21 +138,6 @@ function evcf7_admin_init() {
             }
         }
     }
-}
-
-$plugin = plugin_basename(__FILE__);
-add_filter( "plugin_action_links_$plugin", 'evcf7_add_plugin_link');
-function evcf7_add_plugin_link( $links ) {
-	$support_link = '<a href="https://geekcodelab.com/contact/" target="_blank" >' . __( 'Support', 'email-verification-for-contact-form-7' ) . '</a>';
-	array_unshift( $links, $support_link );
-
-    $pro_link = '<a href="'.esc_url(EVCF7_PRO_PLUGIN_URL).'"  target="_blank" style="color:#46b450;font-weight: 600;">' . __( 'Premium Upgrade' ) . '</a>'; 
-	array_unshift( $links, $pro_link );	
-	
-	$setting_link = '<a href="'. admin_url('admin.php?page=evcf7-email-verify') .'">' . __( 'Settings', 'email-verification-for-contact-form-7' ) . '</a>';
-	array_unshift( $links, $setting_link );
-
-	return $links;
 }
 
 add_action('wp_ajax_evcf7_verify_email','evcf7_verify_email_ajax');
