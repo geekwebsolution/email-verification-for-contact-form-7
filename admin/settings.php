@@ -229,7 +229,7 @@ if(!class_exists('evcf7_settings'))
             );
             add_settings_field(
                 'success_message_color',
-                __('Success Message Color', 'email-verification-for-contact-form-7'),
+                __('Success OTP Message Color', 'email-verification-for-contact-form-7'),
                 array( 'evcf7_settings', 'success_message_color_call'),
                 'evcf7_general_section',
                 'evcf7_general_setting',
@@ -239,7 +239,7 @@ if(!class_exists('evcf7_settings'))
             );
             add_settings_field(
                 'error_message_color',
-                __('Error Message Color', 'email-verification-for-contact-form-7'), 
+                __('Error OTP Message Color', 'email-verification-for-contact-form-7'), 
                 array( 'evcf7_settings', 'error_message_color_call'),
                 'evcf7_general_section',
                 'evcf7_general_setting',
@@ -255,19 +255,33 @@ if(!class_exists('evcf7_settings'))
             if( isset( $input['verify_button_text'] )  && !empty($input['verify_button_text'])) {
                 $new_input['verify_button_text'] = sanitize_text_field($input['verify_button_text']);
             }else{ 
-                $new_input['verify_button_text'] = sanitize_text_field('Click her to verify your mail');
+                $new_input['verify_button_text'] = sanitize_text_field('Click here to verify your mail');
             }
+
             if( isset( $input['invalid_format_message'] ) && !empty($input['invalid_format_message']) ) {
                 $new_input['invalid_format_message'] = sanitize_textarea_field($input['invalid_format_message']);
             }else{ 
                 $new_input['invalid_format_message'] = sanitize_textarea_field('Please enter a valid Email Address. E.g:abc@abc.abc');
             }
-            if( isset( $input['success_otp_message'] ) )
+
+            if( isset( $input['success_otp_message'] ) && !empty($input['success_otp_message']) ) {
                 $new_input['success_otp_message'] = sanitize_textarea_field($input['success_otp_message']);
-            if( isset( $input['error_otp_message'] ) )
+            }else{
+                $new_input['success_otp_message'] = sanitize_textarea_field('A One Time Passcode has been sent to {email} Please enter the OTP below to verify your Email Address. If you cannot see the email in your inbox, make sure to check your SPAM folder.');
+            }
+
+            if( isset( $input['error_otp_message'] ) && !empty($input['error_otp_message']) ) {
                 $new_input['error_otp_message'] = sanitize_textarea_field($input['error_otp_message']);
-            if( isset( $input['invalid_otp_message'] ) )
+            }else{
+                $new_input['error_otp_message'] = sanitize_textarea_field('There was an error in sending the OTP. Please verify your email address or contact site Admin.');
+            }
+                
+            if( isset( $input['invalid_otp_message'] ) && !empty($input['invalid_otp_message']) ) {
                 $new_input['invalid_otp_message'] = sanitize_textarea_field($input['invalid_otp_message']);
+            }else{
+                $new_input['invalid_otp_message'] = sanitize_textarea_field('Invalid OTP. Please enter a valid OTP.');
+            }
+                
             if( isset( $input['email_subject'] ) )
                 $new_input['email_subject'] = sanitize_text_field($input['email_subject']);
             if( isset( $input['email_content'] ) )
@@ -306,7 +320,7 @@ if(!class_exists('evcf7_settings'))
                     <input type="number" class="evcf7-text-field" value="6" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>
-                <p class="evcf7-note"><i><?php echo esc_html('Use length between 4 to 10. Default is 6.','email-verification-for-contact-form-7-pro'); ?></i></p>
+                <p class="evcf7-note"><i><?php echo esc_html('Use length between 4 to 10. Default is 6.','email-verification-for-contact-form-7'); ?></i></p>
             <?php 
         }
 
@@ -315,7 +329,7 @@ if(!class_exists('evcf7_settings'))
                     <input type="number" class="evcf7-text-field" value="1" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>
-                <p class="evcf7-note"><i><?php echo esc_html('Set the OTP expiry time in minute. Default is 0 minute.','email-verification-for-contact-form-7-pro'); ?></i></p>
+                <p class="evcf7-note"><i><?php echo esc_html('Set the OTP expiry time in minute. Default is 0 minute.','email-verification-for-contact-form-7'); ?></i></p>
             <?php 
         }
 
@@ -324,7 +338,7 @@ if(!class_exists('evcf7_settings'))
                     <input class="evcf7-text-field" type="text" value="[evcf7_verify_button]" style="text-align:center;" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>    
-                <p class="evcf7-note"><i><?php echo esc_html('Add this tag to display button in contact form. Default will display under email field.','email-verification-for-contact-form-7-pro'); ?></i></p>
+                <p class="evcf7-note"><i><?php echo esc_html('Add this tag to display button in contact form. Default will display under email field.','email-verification-for-contact-form-7'); ?></i></p>
             <?php
         }
 
@@ -372,7 +386,7 @@ if(!class_exists('evcf7_settings'))
             <div class="evcf7-pro-feature-field">
                 <textarea cols="30" rows="3" disabled>OTP expired, please request a new one.</textarea>
             </div>
-            <p><span><i>This message is displayed after OTP expired and the countdown is finished. Available only in the <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Pro Version') ?></a>.</i></span></p>
+            <p><span><i><?php echo esc_html('This message is displayed after OTP expired and the countdown is finished. Available only in the'. ''); ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Pro Version') ?></a>.</i></span></p>
             <?php 
         }
 
