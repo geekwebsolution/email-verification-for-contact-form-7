@@ -277,15 +277,17 @@ if(!class_exists('evcf7_settings'))
             }
                 
             if( isset( $input['invalid_otp_message'] ) && !empty($input['invalid_otp_message']) ) {
-                $new_input['invalid_otp_message'] = sanitize_textarea_field($input['invalid_otp_message']);
+                $new_input['invalid_otp_message'] = sanitize_text_field($input['invalid_otp_message']);
             }else{
-                $new_input['invalid_otp_message'] = sanitize_textarea_field('Invalid OTP. Please enter a valid OTP.');
+                $new_input['invalid_otp_message'] = sanitize_text_field('Invalid OTP. Please enter a valid OTP.');
             }
                 
             if( isset( $input['email_subject'] ) )
                 $new_input['email_subject'] = sanitize_text_field($input['email_subject']);
-            if( isset( $input['email_content'] ) )
-                $new_input['email_content'] = sanitize_textarea_field(htmlentities($input['email_content']));
+            if( isset( $input['email_content'] ) ) {
+                $allowed_elemets = array( 'br' => array(), 'strong' => array(), 'b' => array(), 'i' => array(), 'u' => array() );
+                $new_input['email_content'] = sanitize_textarea_field(htmlentities(wp_kses($input['email_content'],$allowed_elemets)));
+            }
             if( isset( $input['verify_button_color'] ) )
                 $new_input['verify_button_color'] = sanitize_text_field($input['verify_button_color']);
             if( isset( $input['verify_button_text_color'] ) )

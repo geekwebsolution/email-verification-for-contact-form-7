@@ -3,7 +3,7 @@
 Plugin Name: Email Verification for Contact Form 7
 Description: Fill out the contact form 7 and submit it with an email address that is verified.
 Author: Geek Code Lab
-Version: 2.3
+Version: 2.4
 Author URI: https://geekcodelab.com/
 Text Domain : email-verification-for-contact-form-7
 */
@@ -17,7 +17,7 @@ if (!defined("EVCF7_PLUGIN_URL"))
     
     define("EVCF7_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
     
-define("EVCF7_BUILD", '2.3');
+define("EVCF7_BUILD", '2.4');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
 /**
@@ -173,9 +173,12 @@ function evcf7_verify_email_ajax() {
         if(isset($evcf7_options['email_subject']))          $email_subject    = str_replace($search, $replace, sanitize_text_field($evcf7_options['email_subject']));
         if(isset($evcf7_options['email_content']))          $email_content    = str_replace($search, $replace, sanitize_textarea_field($evcf7_options['email_content']));
 
-        $mail = wp_mail($to,html_entity_decode($email_subject),html_entity_decode($email_content),$headers);
+        $allowed_elemets = array( 'br' => array(), 'strong' => array(), 'b' => array(), 'i' => array(), 'u' => array() );
+        $email_html_decode = wp_kses( html_entity_decode($email_content), $allowed_elemets );
+
+        $mail = wp_mail($to,html_entity_decode($email_subject),$email_html_decode,$headers);
         if($mail == true) { ?>
-                <p class="evcf7_email_sent"><?php echo esc_html($success_otp_msg,'email-verification-for-contact-form-7'); ?></p>
+                <p class="evcf7_email_sent"><?php echo nl2br(esc_html($success_otp_msg,'email-verification-for-contact-form-7')); ?></p>
             <?php
             global $wpdb;
             $db_table_name = $wpdb->prefix . 'evcf7_options';
@@ -191,7 +194,7 @@ function evcf7_verify_email_ajax() {
                 $wpdb->insert($db_table_name,$data);
             }
         }else{ ?>
-                <p class="evcf7_error_sending_mail"><?php echo esc_html($error_otp_msg,'email-verification-for-contact-form-7'); ?></p>
+                <p class="evcf7_error_sending_mail"><?php echo nl2br(esc_html($error_otp_msg,'email-verification-for-contact-form-7')); ?></p>
             <?php
         }
 
