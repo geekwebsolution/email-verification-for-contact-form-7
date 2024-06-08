@@ -4,8 +4,9 @@ Donate link: https://paypal.me/rvadhel
 Tags: email, email verification, cf7 email verification
 Requires PHP: 7.4
 Requires at least: 6.4
-Tested up to: 6.4.3
-Stable tag: 2.4
+Tested up to: 6.5.4
+Stable tag: 2.4.1
+Requires Plugins: contact-form-7
 License: GPLv2 or later
 
 Fill out the contact form 7 and submit it with an email address that is verified.
@@ -67,6 +68,9 @@ For Generel Settings go to Contact-> Email Verification. Or go to Plugins-> Inst
 6. Contact form preview
 
 == Changelog ==
+= 2.4.1 =
+ - Fixed translation bugs.
+
 = 2.4 =
  - Fixed line break issue with textarea fields
 

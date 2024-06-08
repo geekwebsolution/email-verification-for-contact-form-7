@@ -19,7 +19,7 @@ if(!class_exists('evcf7_settings'))
                 wp_die( __('You do not have sufficient permissions to access this page.', 'email-verification-for-contact-form-7'));
             } ?>
             <div class="wrap">
-                <h2 class="evcf7-h2-title"><?php _e('Email verification for Contact Form 7','email-verification-for-contact-form-7') ?></h2>
+                <h2 class="evcf7-h2-title"><?php esc_html_e('Email verification for Contact Form 7','email-verification-for-contact-form-7') ?></h2>
                 <?php settings_errors(); ?>
 
                 <form method="post" action="options.php">
@@ -38,21 +38,21 @@ if(!class_exists('evcf7_settings'))
                         <div class=" evcf7-col-5">
                             <div class="evcf7-box">
                                 <div class="evcf7-pro-features-box">
-                                    <h3 class="evcf7-h3-title"><?php echo esc_html('Email verification for Contact Form 7 Pro','email-verification-for-contact-form-7'); ?></h3>
+                                    <h3 class="evcf7-h3-title"><?php esc_html_e('Email verification for Contact Form 7 Pro','email-verification-for-contact-form-7'); ?></h3>
                                     <ul class="evcf7-pro-features-list">
-                                        <li><?php echo esc_html('Set the custom text for Resend OTP button.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Option to set OTP expiry times.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Display the OTP expiry countdown timer with your custom message.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Admin can change Expired OTP Message.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('HTML Supported in OTP mail body.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Admin can change position of verify button.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Admin can change length of OTP which users received via email.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Timely','email-verification-for-contact-form-7'); ?> <a href="https://geekcodelab.com/contact/" target="_blank"><?php echo esc_html('support','email-verification-for-contact-form-7'); ?></a> <?php echo esc_html('24/7.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Regular updates.','email-verification-for-contact-form-7'); ?></li>
-                                        <li><?php echo esc_html('Well documented.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Set the custom text for Resend OTP button.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Option to set OTP expiry times.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Display the OTP expiry countdown timer with your custom message.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Admin can change Expired OTP Message.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('HTML Supported in OTP mail body.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Admin can change position of verify button.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Admin can change length of OTP which users received via email.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Timely','email-verification-for-contact-form-7'); ?> <a href="https://geekcodelab.com/contact/" target="_blank"><?php esc_html_e('support','email-verification-for-contact-form-7'); ?></a> 24/7.</li>
+                                        <li><?php esc_html_e('Regular updates.','email-verification-for-contact-form-7'); ?></li>
+                                        <li><?php esc_html_e('Well documented.','email-verification-for-contact-form-7'); ?></li>
                                     </ul>
                                     <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>"
-                                        class="evcf7-buy-now-btn" title="Upgrade to Premium" target="_blank"><?php echo esc_html('Upgrade to Premium','email-verification-for-contact-form-7'); ?></a>
+                                        class="evcf7-buy-now-btn" title="Upgrade to Premium" target="_blank"><?php esc_html_e('Upgrade to Premium','email-verification-for-contact-form-7'); ?></a>
                                 </div>
                             </div>
                         </div>
@@ -322,7 +322,7 @@ if(!class_exists('evcf7_settings'))
                     <input type="number" class="evcf7-text-field" value="6" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>
-                <p class="evcf7-note"><i><?php echo esc_html('Use length between 4 to 10. Default is 6.','email-verification-for-contact-form-7'); ?></i></p>
+                <p class="evcf7-note"><i><?php esc_html_e('Use length between 4 to 10. Default is 6.','email-verification-for-contact-form-7'); ?></i></p>
             <?php 
         }
 
@@ -331,7 +331,7 @@ if(!class_exists('evcf7_settings'))
                     <input type="number" class="evcf7-text-field" value="1" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>
-                <p class="evcf7-note"><i><?php echo esc_html('Set the OTP expiry time in minute. Default is 0 minute.','email-verification-for-contact-form-7'); ?></i></p>
+                <p class="evcf7-note"><i><?php esc_html_e('Set the OTP expiry time in minute. Default is 0 minute.','email-verification-for-contact-form-7'); ?></i></p>
             <?php 
         }
 
@@ -340,7 +340,7 @@ if(!class_exists('evcf7_settings'))
                     <input class="evcf7-text-field" type="text" value="[evcf7_verify_button]" style="text-align:center;" disabled>
                     <span class="evcf7-pro">pro</span>
                 </div>    
-                <p class="evcf7-note"><i><?php echo esc_html('Add this tag to display button in contact form. Default will display under email field.','email-verification-for-contact-form-7'); ?></i></p>
+                <p class="evcf7-note"><i><?php esc_html_e('Add this tag to display button in contact form. Default will display under email field.','email-verification-for-contact-form-7'); ?></i></p>
             <?php
         }
 
@@ -348,7 +348,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_textarea_field($evcf7_options[$args['label_for']]) : ''; ?>
             <textarea name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]" id="<?php esc_attr_e( $args['label_for'] ); ?>" 
-                cols="30" rows="3"><?php _e($value,'email-verification-for-contact-form-7'); ?></textarea>
+                cols="30" rows="3"><?php esc_html_e($value); ?></textarea>
             <?php
         }
 
@@ -356,7 +356,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_textarea_field($evcf7_options[$args['label_for']]) : ''; ?>
             <textarea name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]" id="<?php esc_attr_e( $args['label_for'] ); ?>" 
-                cols="30" rows="3"><?php _e($value,'email-verification-for-contact-form-7'); ?></textarea>
+                cols="30" rows="3"><?php esc_html_e($value); ?></textarea>
             <?php 
         }
 
@@ -364,7 +364,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_textarea_field($evcf7_options[$args['label_for']]) : ''; ?>
             <textarea name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]" id="<?php esc_attr_e( $args['label_for'] ); ?>" 
-                cols="30" rows="3"><?php _e($value,'email-verification-for-contact-form-7'); ?></textarea>
+                cols="30" rows="3"><?php esc_html_e($value); ?></textarea>
             <?php 
         }
 
@@ -372,7 +372,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_textarea_field($evcf7_options[$args['label_for']]) : ''; ?>
             <textarea name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]" id="<?php esc_attr_e( $args['label_for'] ); ?>" 
-                cols="30" rows="3"><?php _e($value,'email-verification-for-contact-form-7'); ?></textarea>
+                cols="30" rows="3"><?php esc_html_e($value); ?></textarea>
             <?php 
         }
 
@@ -380,7 +380,7 @@ if(!class_exists('evcf7_settings'))
                 <div class="evcf7-pro-feature-field">
                     <textarea cols="30" rows="3" disabled>Your OTP will expiring in {minutes} minutes and {seconds} seconds.</textarea>
                 </div>
-                <p><span><i>Use these tags to display the expiry countdown timer. like <code>{minutes}</code> <code>{seconds}</code>. Available in <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Pro Version') ?></a>.</i></span></p>
+                <p><span><i><?php echo wp_kses( __('Use these tags to display the expiry countdown timer. like <code>{minutes}</code> <code>{seconds}</code>. Available in','email-verification-for-contact-form-7-pro'),array( 'code' => array() )  ); ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php esc_html_e('Pro Version','email-verification-for-contact-form-7-pro') ?></a>.</i></span></p>
             <?php 
         }
 
@@ -388,7 +388,7 @@ if(!class_exists('evcf7_settings'))
             <div class="evcf7-pro-feature-field">
                 <textarea cols="30" rows="3" disabled>OTP expired, please request a new one.</textarea>
             </div>
-            <p><span><i><?php echo esc_html('This message is displayed after OTP expired and the countdown is finished. Available only in the'. ''); ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Pro Version') ?></a>.</i></span></p>
+            <p><span><i><?php esc_html_e('This message is displayed after OTP expired and the countdown is finished. Available only in the'. ''); ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Pro Version') ?></a>.</i></span></p>
             <?php 
         }
 
@@ -396,7 +396,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_text_field($evcf7_options[$args['label_for']]) : ''; ?>
             <input class="evcf7-text-field" type="text" name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php _e($value,'email-verification-for-contact-form-7'); ?>">
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php esc_html_e($value); ?>">
             <?php 
         }
 
@@ -404,8 +404,8 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_textarea_field($evcf7_options[$args['label_for']]) : ''; ?>
             <textarea name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" cols="30" rows="3"><?php _e($value,'email-verification-for-contact-form-7'); ?></textarea>
-                <p><span><i><?php _e("HTML content for OTP's mail body is supported in") ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro"><?php _e('Email Verification For Contact Form 7 Pro.') ?></a></i></span></p>
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" cols="30" rows="3"><?php esc_html_e($value); ?></textarea>
+                <p><span><i><?php esc_html_e("HTML content for OTP's mail body is supported in","email-verification-for-contact-form-7-pro") ?> <a href="<?php echo esc_url(EVCF7_PRO_PLUGIN_URL); ?>" target="_blank" title="Buy Email Verification For Contact Form 7 Pro">Email Verification For Contact Form 7 Pro</a>.</i></span></p>
             <?php 
         }
 
@@ -413,7 +413,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_text_field($evcf7_options[$args['label_for']]) : ''; ?>
             <input type="text" class="evcf7-color-field" name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php _e($value,'email-verification-for-contact-form-7'); ?>">
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php esc_html_e($value); ?>">
             <?php 
         }
 
@@ -421,7 +421,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_text_field($evcf7_options[$args['label_for']]) : ''; ?>
             <input type="text" class="evcf7-color-field" name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php _e($value,'email-verification-for-contact-form-7'); ?>">
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php esc_html_e($value); ?>">
             <?php 
         }
         
@@ -429,7 +429,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_text_field($evcf7_options[$args['label_for']]) : ''; ?>
             <input type="text" class="evcf7-color-field" name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php _e($value,'email-verification-for-contact-form-7'); ?>">
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php esc_html_e($value); ?>">
             <?php 
         }
 
@@ -437,7 +437,7 @@ if(!class_exists('evcf7_settings'))
             global $evcf7_options;
             $value = isset($evcf7_options[$args['label_for']]) ? sanitize_text_field($evcf7_options[$args['label_for']]) : ''; ?>
             <input type="text" class="evcf7-color-field" name="evcf7_options[<?php esc_attr_e( $args['label_for'] ); ?>]"
-                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php _e($value,'email-verification-for-contact-form-7'); ?>">
+                id="<?php esc_attr_e( $args['label_for'] ); ?>" value="<?php esc_html_e($value); ?>">
             <?php 
         }
 
