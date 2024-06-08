@@ -10,8 +10,8 @@ if(!class_exists('evcf7_admin_functions'))
         static function evcf7_update_tag_generator_email(){
             if(class_exists('WPCF7_TagGenerator')){
                 $tag_generator = WPCF7_TagGenerator::get_instance();
-                $tag_generator->add( 'verification', __( 'verification', 'contact-form-7-mail-verification' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
-                $tag_generator->add( 'verification-otp', __( 'verification otp', 'contact-form-7-mail-verification' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
+                $tag_generator->add( 'verification', __( 'verification', 'email-verification-for-contact-form-7' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
+                $tag_generator->add( 'verification-otp', __( 'verification otp', 'email-verification-for-contact-form-7' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
             }
         }
 
