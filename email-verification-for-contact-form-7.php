@@ -3,7 +3,7 @@
 Plugin Name: Email Verification for Contact Form 7
 Description: Fill out the contact form 7 and submit it with an email address that is verified.
 Author: Geek Code Lab
-Version: 2.4.1
+Version: 2.4.2
 Author URI: https://geekcodelab.com/
 Requires Plugins: contact-form-7
 Text Domain : email-verification-for-contact-form-7
@@ -18,7 +18,7 @@ if (!defined("EVCF7_PLUGIN_URL"))
     
     define("EVCF7_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
     
-define("EVCF7_BUILD", '2.4.1');
+define("EVCF7_BUILD", '2.4.2');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
 register_activation_hook( __FILE__, 'evcf7_plugin_activate' );
@@ -182,7 +182,7 @@ function evcf7_verify_email_ajax() {
 // admin scripts
 add_action('admin_enqueue_scripts','evcf7_plugin_admin_scripts');
 function evcf7_plugin_admin_scripts( $hook ) {
-    if($hook == 'contact_page_evcf7-email-verify') {
+    if (is_admin() && strpos($hook, 'evcf7-email-verify') !== false) {
         wp_enqueue_style('evcf7-admin-style', plugins_url() . '/' . basename(dirname(__FILE__)) . '/assets/css/admin-style.css', array( 'wp-color-picker' ), EVCF7_BUILD);
         wp_enqueue_script('evcf7-admin-script', plugins_url() . '/' . basename(dirname(__FILE__)) . '/assets/js/admin-script.js', array( 'jquery','wp-color-picker' ), EVCF7_BUILD);
     }
