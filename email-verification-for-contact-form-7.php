@@ -182,7 +182,7 @@ function evcf7_verify_email_ajax() {
 // admin scripts
 add_action('admin_enqueue_scripts','evcf7_plugin_admin_scripts');
 function evcf7_plugin_admin_scripts( $hook ) {
-    if (is_admin() && strpos($hook, 'evcf7p-email-verify') !== false) {
+    if (is_admin() && strpos($hook, 'evcf7-email-verify') !== false) {
         wp_enqueue_style('evcf7-admin-style', plugins_url() . '/' . basename(dirname(__FILE__)) . '/assets/css/admin-style.css', array( 'wp-color-picker' ), EVCF7_BUILD);
         wp_enqueue_script('evcf7-admin-script', plugins_url() . '/' . basename(dirname(__FILE__)) . '/assets/js/admin-script.js', array( 'jquery','wp-color-picker' ), EVCF7_BUILD);
     }
