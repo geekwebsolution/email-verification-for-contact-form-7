@@ -3,7 +3,7 @@
 Plugin Name: Email Verification for Contact Form 7
 Description: Fill out the contact form 7 and submit it with an email address that is verified.
 Author: Geek Code Lab
-Version: 2.4.1
+Version: 2.4.2
 Author URI: https://geekcodelab.com/
 Requires Plugins: contact-form-7
 Text Domain : email-verification-for-contact-form-7
@@ -18,7 +18,7 @@ if (!defined("EVCF7_PLUGIN_URL"))
     
     define("EVCF7_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
     
-define("EVCF7_BUILD", '2.4.1');
+define("EVCF7_BUILD", '2.4.2');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
 register_activation_hook( __FILE__, 'evcf7_plugin_activate' );
