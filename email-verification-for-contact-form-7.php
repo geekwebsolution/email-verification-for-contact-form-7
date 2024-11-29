@@ -17,12 +17,22 @@ if (!defined("EVCF7_PLUGIN_DIR_PATH"))
 if (!defined("EVCF7_PLUGIN_URL"))
     
     define("EVCF7_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
+
+if (!defined("EVCF7_PLUGIN_BASENAME"))
+define("EVCF7_PLUGIN_BASENAME", plugin_basename(__FILE__));
+
+if (!defined("EVCF7_PLUGIN_DIR"))
+	define("EVCF7_PLUGIN_DIR", plugin_basename(__DIR__));
     
 define("EVCF7_BUILD", '2.4.1');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
+add_action('upgrader_process_complete', 'evcf7_updater_activate'); // remove  transient  on plugin  update
+
+
 register_activation_hook( __FILE__, 'evcf7_plugin_activate' );
 function evcf7_plugin_activate() {
+    evcf7_updater_activate();
 
     if (is_plugin_active( 'email-verification-for-contact-form-7-pro/email-verification-for-contact-form-7-pro.php' ) ) {
 		deactivate_plugins('email-verification-for-contact-form-7-pro/email-verification-for-contact-form-7-pro.php');
