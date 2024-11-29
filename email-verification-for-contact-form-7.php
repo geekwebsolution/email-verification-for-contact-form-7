@@ -27,6 +27,8 @@ if (!defined("EVCF7_PLUGIN_DIR"))
 define("EVCF7_BUILD", '2.4.1');
 define("EVCF7_PRO_PLUGIN_URL", 'https://geekcodelab.com/wordpress-plugins/email-verification-for-contact-form-7-pro/');
 
+require_once(EVCF7_PLUGIN_DIR_PATH . 'updater/updater.php');
+
 add_action('upgrader_process_complete', 'evcf7_updater_activate'); // remove  transient  on plugin  update
 
 
