@@ -11,7 +11,7 @@ function evcf7_updater_utility() {
         'prefix' => $prefix,
         'get_base' => EVCF7_PLUGIN_BASENAME,
         'get_slug' => EVCF7_PLUGIN_DIR,
-        'get_version' => EVCF7_PLUGIN_VERSION,
+        'get_version' => EVCF7_BUILD,
         'get_api' => 'https://download.geekcodelab.com/',
         'license_update_class' => $prefix . 'Update_Checker'
     ];
