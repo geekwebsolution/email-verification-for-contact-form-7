@@ -4,14 +4,31 @@ if(!class_exists('evcf7_admin_functions'))
     class evcf7_admin_functions
     {
         public function __construct(){
-            add_action( 'wpcf7_init', array( 'evcf7_admin_functions','evcf7_update_tag_generator_email' ), 36, 0 );     // form tag generator
+            add_action( 'wpcf7_admin_init', array( 'evcf7_admin_functions','evcf7_update_tag_generator_email' ), 20 ); // form tag generator
         }
-
-        static function evcf7_update_tag_generator_email(){
-            if(class_exists('WPCF7_TagGenerator')){
+        static function evcf7_update_tag_generator_email() {
+            if ( class_exists( 'WPCF7_TagGenerator' ) ) {
                 $tag_generator = WPCF7_TagGenerator::get_instance();
-                $tag_generator->add( 'verification', __( 'verification', 'email-verification-for-contact-form-7' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
-                $tag_generator->add( 'verification-otp', __( 'verification otp', 'email-verification-for-contact-form-7' ), array('evcf7_admin_functions','evcf7_tag_generator_email') );
+
+                $tag_generator->add(
+                    'verification',
+                    __( 'verification', 'email-verification-for-contact-form-7' ),
+                    array(
+                        'callback' => array( 'evcf7_admin_functions', 'evcf7_tag_generator_email' ),
+                        'title'    => __( 'Verification', 'email-verification-for-contact-form-7' ),
+                        'version'  => 2
+                    )
+                );
+
+                $tag_generator->add(
+                    'verification-otp',
+                    __( 'verification otp', 'email-verification-for-contact-form-7' ),
+                    array(
+                        'callback' => array( 'evcf7_admin_functions', 'evcf7_tag_generator_email' ),
+                        'title'    => __( 'Verification OTP', 'email-verification-for-contact-form-7' ),
+                        'version'  => 2
+                    )
+                );
             }
         }
 
